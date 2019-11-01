@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ComandX - Adicionar Pratos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="/stylesheets/bootstrap.css">
+    <link href="/stylesheets/style.css" rel="stylesheet">
+    <meta charset="utf-8">
+</head>
+
+<body style="padding-top: 30px;">
+    <div class="container ">
+
+        <div class="header clearfix ">
+            <a href="/">Voltar</a>
+            <h2 class="by1 ">ComandX - Admin</h2>
+            <small class="by ">Adicionar | Editar Funcionario</small>
+
+        </div>
+
+        <div class="container-fluid ">
+ <!-- se a tarefa existe e será editada -->             
+            <% if(func.idfunc>0){ %>   <!-- se a tarefa existe e será editada -->             
+                <form method="POST" action="/func/edit/<%= func.idfunc %>">
+                <input type="hidden" name="_method" value="PUT" />
+            <% }else{ %>
+                <form id="formulario " method="post" action="/func/add">
+            <% } %>
+
+           
+     
+
+
+           
+                <div id="aviso "></div>
+                <div class="form-group ">
+                    <label>Nome do Funcionario:</label>
+                    <input type="text " class="form-control input" name="nomeFunc" id="nomeFunc" value="<%=func.nome%>" required placeholder="Digite o nome do Funcionário... ">
+                </div>
+                <div class="form-group ">
+                    <label>Email do Funcionario:</label>
+                    <input type="text " class="precoPrato form-control input" name="emailFunc" id="emailFunc" required value="<%=func.email%>" placeholder="Digite o email do funcionario... ">
+                </div>
+                <div class="form-group ">
+                    <label>Permissões do Funcionario:</label>
+                    <select class="form-control " id="permFunc" name="permFunc" >
+						<option>1</option>
+                        <option>2</option>  
+                        <option>3</option>
+                        <option>4</option>
+					</select>
+                </div>
+                <hr style="margin-top: 25px; margin-bottom: 25px;">
+                <div class="form-group ">
+                    <label>Usuario do Funcionario:</label>
+                    <input type="text " class="form-control required input col-4" name="userFunc" id="userFunc" value="<%=func.user%>"placeholder="Usuario... ">
+                </div>
+                <div class="form-group ">
+                    <label>Senha do  do Funcionario:</label>
+                    <input type="password" class="form-control required input col-4" name="passFunc" id="passFunc" value="<%=func.pass%>"placeholder="Senha... ">
+                </div>
+                
+                <button type="submit " class="btn btn-primary ">Adicionar</button>
+            </form>
+        </div>
+ 
+        <!-- <div class="row marketing ">
+            <div class="col-lg-12 ">
+                <table class="table table-hover ">
+                    <thead>
+                        <tr>
+                            <th>Modelo</th>
+                            <th>Placa</th>
+                            <th>Entrada</th>
+                            <th>Finalizar</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultados ">
+                    </tbody>
+                </table>
+            </div>
+        </div> -->
+    </div>
+
+    <script src="/javascripts/jquery.js"></script>
+    <script src="/javascripts/popper.js"></script>
+
+    <script src="/javascripts/bootstrap.js"></script>
+    <script src="/javascripts/jquery.mask.min.js"></script>
+    <script src="/javascripts/jquery.validate.min..js"></script>
+    <script src="/javascripts/validarform.js"></script>
+    <script src="/javascripts/validacampos.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#permFunc').val('<%=func.permissao%>');
+        });
+    
+    
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+/* Space out content a bit */
+
+body {
+    
+    font-family: 'Roboto', sans-serif;
+}
+.card bg-light mb-3:hover{
+    transition: 1s;
+    box-shadow: 0px 0px 13px 0px rgba(0,0,0,0.51);
+}
+.table td,
+.table th {
+    line-height: 30px;
+    padding: 3px;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+
+.paginate_button a {
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    border: none;
+    background-color: #dee2e6;
+}
+
+.material-icons {
+    color: #000;
+}
+
+#resultados {
+    font-size: 15px;
+}
+
+#editar {
+    padding: 0;
+    color: #4c00ff;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+#deletar {
+    padding: 0;
+    color: #ff0000;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.deletar {
+    padding: 0;
+}
+
+.by {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    opacity: 0.4;
+}
+
+.by1 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.preco {
+    font-size: 20px;
+    color: red;
+    font-weight: bold;
+}
+
+#qrcode {
+    width: 160px;
+    height: 160px;
+    margin-top: 15px;
+}
+
+.link {
+    color: red;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 25px;
+    font-weight: 500;
+    transition: 0.5s;
+}
+
+.link:hover {
+    color: #000;
+    transition: 0.5s;
+}
+
+select {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+}
+
+option {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+}
+
+input {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 25px;
+    font-weight: 800;
+}
+
+input[type="search"] {
+    font-size: 23px;
+    font-weight: 300;
+    width: 300px;
+    height: 30px;
+    font-family: 'Montserrat', sans-serif;
+    width: 300px;
+    padding: 5px 20px;
+    border: 2px solid #ff9900;
+    border-radius: 0 23px / 20px 20px 0;
+}
+
+footer {
+    border-top: 3px solid #e5e5e5;
+    padding-top: 15px;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    color: rgb(0, 0, 0, 0.3);
+    font-size: 25px;
+}
+
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+
+.header,
+.marketing,
+.footer {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.paragr {
+    font-size: 15px;
+    text-align: center;
+}
+
+
+/* Custom page header */
+
+
+/* Make the masthead heading the same height as the navigation */
+
+.header h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 50px;
+}
+
+.homebv {
+    text-align: center;
+    font-size: 15px;
+}
+
+
+/* Custom page footer */
+
+.footer {
+    padding-top: 19px;
+    color: #777;
+    border-top: 1px solid #e5e5e5;
+}
+
+.tablecontainer {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+
+/* Customize container */
+
+@media (min-width: 768px) {
+    .table {
+        padding: 0;
+    }
+    .tablecontainer {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .container-narrow > hr {
+        margin: 30px 0;
+      }
+    footer {
+        font-size: 7px;
+    }
+}
+
+
+/* Main marketing message and sign up button */
+
+.jumbotron {
+    text-align: center;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.jumbotron .btn {
+    padding: 14px 24px;
+    font-size: 21px;
+}
+
+
+/* Supporting marketing content */
+
+.marketing p+h4 {
+    margin-top: 28px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.header {
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 3px solid #e5e5e5;
+}
+
+
+/* Responsive: Portrait tablets and up */
+
+@media screen and (min-width: 768px) {
+    /* Remove the padding we set earlier */
+    .header,
+    .marketing,
+    .footer {
+        padding-right: 0;
+        padding-left: 0;
+    }
+    footer {
+        font-size: 7px;
+    }
+    /* Space out the masthead */
+    .header {
+        margin-bottom: 30px;
+    }
+    /* Remove the bottom border on the jumbotron for visual effect */
+    .jumbotron {
+        border-bottom: 0;
+    }
+    .tablecontainer {
+        margin-left: 60px;
+        margin-right: 60px;
+    }
+}

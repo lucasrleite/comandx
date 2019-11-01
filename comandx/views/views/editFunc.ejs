@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ComandX - Editar Pratos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="/stylesheets/bootstrap.css" />
+    <link rel="stylesheet" href="/stylesheets/datatable.min.css" />
+    <link rel="stylesheet" href="/stylesheets/datatable.responsive.css" />
+    <link href="/stylesheets/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta charset="utf-8">
+</head>
+
+<body style="padding-top: 30px;">
+    
+    <div class="header clearfix" style="margin-top: 15px;">
+        <a href="/">Voltar</a>
+        <h2 class="by1">ComandX - Admin</h2>
+        <small class="by">Funcionarios</small>
+    </div>
+
+
+    <div class="tablecontainer" style="margin-top: 20px;">
+
+        <table id="example" class="display responsive nowrap" style="width:100%">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Permissão</th>
+                    <th>User</th>
+                    <th>Editar</th>
+                    <th>Deletar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(func of funcionarios) {%>
+                    <tr>
+                        <th>
+                             <%=func.idfunc%>
+                        </th>
+                        <td>
+                            <%=func.nome%>
+                        </td>
+                        <td>
+                            <%=func.email%>
+                        </td>
+                        <td>
+                            <%=func.permissao%>
+                        </td>
+                        <td>
+                            <%=func.user%>
+                        </td>
+                        <td><a href="/func/edit/<%=func.idfunc%>"><i class="material-icons">
+                                create
+                                </i></a></td>
+                        <td><a href="#" onclick="excluir('<%=func.idfunc%>')"><i class="material-icons">
+                                delete_sweep
+                                    </i></a></td>
+                    </tr>
+
+                    <% } %>
+
+                        </tr>
+
+            </tbody>
+        </table>
+
+
+
+    </div>
+
+    <script src="/javascripts/jquery.js"></script>
+    <script src="/javascripts/bootstrap.js"></script>
+    <script src="/javascripts/jquery.datatables.js"></script>
+    <script src="/javascripts/data.responsive.js"></script>
+
+
+
+    <script src="/javascripts/sweetalerts.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable({
+                rowReorder: {
+                    enable: false,
+                    selector: 'td:nth-child(3)'
+                },
+                responsive: true,
+                //"order": [[ 1, "asc" ]], //default: 1a coluna asc
+                "language": {
+                    "sEmptyTable": "Nenhum registro encontrado",
+                    "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+                    "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sInfoThousands": ".",
+                    "sLengthMenu": "_MENU_ resultados por página",
+                    "sLoadingRecords": "Carregando...",
+                    "sProcessing": "Processando...",
+                    "sZeroRecords": "Nenhum registro encontrado",
+                    "sSearch": "Pesquisar",
+                    "oPaginate": {
+                        "sNext": "Próximo",
+                        "sPrevious": "Anterior",
+                        "sFirst": "Primeiro",
+                        "sLast": "Último"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Ordenar colunas de forma ascendente",
+                        "sSortDescending": ": Ordenar colunas de forma descendente"
+                    }
+                }
+            });
+
+        });
+    </script>
+    <script>
+        function excluir(id) {
+            Swal.fire({
+                title: 'Tem certeza disso?',
+                text: 'Você está prestes a excluir um funcionario do sistema !',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sim, tenho certeza!'
+            }).then((result) => {
+                if (result.value == true) {
+                    console.log(id)
+                    excluirDAO(id)
+                }
+            });
+
+            function excluirDAO(id) {
+                console.log(id)
+                $.ajax({
+                    'url': `/func/delete/${id}`, //aqui vai o endereço da rota        
+                    'type': 'DELETE', // ou POST 
+                    // 'data': $("form").serialize(), //para enviar os dados do form completo; senão tem que pegar campo a campo e enviar ex: { nome : $("# nome ").val(), email : $("#
+                    'contentType': 'application/json'
+                }).done(function(data) {
+                    /* aqui vai o código javascript para configurar a mensagem animada, após enviar os dados e concluídas as fases do 
+node */     
+                    console.log(data);
+                    if(data=="OK"){
+                        Swal.fire({
+                            title: 'Exclusão concluida com sucesso!!',
+                            text: 'Foi realizada a exclusão com sucesso!!!',
+                            type: 'success',
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'Ok'
+                        }).then((result) => {
+                            
+                            if (result) {
+                                window.location.reload();
+                            }
+                        
+                        });
+                }else{
+                    Swal.fire({
+                            title: 'Exclusão  não executada com sucesso!!',
+                            text: 'Não foi realizada a exclusão com sucesso!!!',
+                            type: 'error',
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'Ok'
+                        });
+                }
+            }
+
+            
+                )}
+    }
+                
+</script>
+
+</body>
+
+</html>

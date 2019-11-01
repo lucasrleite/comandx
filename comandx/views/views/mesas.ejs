@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ComandX - Menu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="/stylesheets/bootstrap.css" />
+    <link href="/stylesheets/style.css" rel="stylesheet">
+</head>
+
+<body style="padding-top: 30px;">
+    <div class="container">
+        <div class="header clearfix ">
+            <a href="/">Voltar</a>
+            <h2 class="by1 ">ComandX - Admin</h2>
+            <small class="by ">Adicionar Mesa</small>
+
+        </div>
+
+        <div class="jumbotron">
+                
+                <div class="form-group ">
+                    <label>Mesa:</label>
+                    <input type="number" class="form-control" name="qrCodeaa" id="qrCodeaa" >
+                </div>
+                <div class="form-group ">
+                    <label>Quantidade de Cadeiras:</label>
+                    <input type="number" class="form-control"  >
+                </div>
+                
+                
+                <div class="form-group">
+                        <div id="gerado"></div>
+                        
+                    </div>
+                    <h3></h3>
+                
+                <div class="form-group ">
+                    <button onclick="qrCode()" class="btn btn-primary">Gerar QrCode</button>
+                </div>
+                <div class="form-group ">
+                    <button onclick="qrCode()" class="btn btn-secondary">Imprimir</button>
+                </div>
+
+
+        </div>
+
+        <script>
+            function qrCode(){
+            $("#gerado").html("");
+            var qr = $("#qrCodeaa").val();
+            var qrcodep = "mesa"+qr;
+            
+            $("#gerado").css({
+                
+                "width": "128px",
+                "height": "128px",
+                "box-shadow":"0px 0px 11px 1px rgba(0,0,0,0.82)",
+                "display": "block",
+                "margin-left":"auto",
+                "margin-right": "auto"
+            })
+            jQuery("#gerado").qrcode({
+                width: 128,
+                height: 128,
+                text: qrcodep
+                
+            });
+            
+        
+        };
+        </script>
+        <script src="/javascripts/jquery.js"></script>
+        <script src="/javascripts/jquery.qrcode.min.js"></script>
+        <script src="/javascripts/popper.js"></script>
+        <script src="/javascripts/bootstrap.js"></script>
+        
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ComandX - Menu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="/stylesheets/style.css" rel="stylesheet">
+</head>
+
+<body style="padding-top: 30px; font-family: MontSerrat;">
+    <div class="container">
+        <div class="header clearfix" style="width: 460px; margin-left: auto; margin-right: auto;">
+            <h2 class="by1">ComandX - Login </h2>
+            
+            
+        </div>
+        <form action="/login" method="post">
+        <div class="card bg-light mb-3" style="max-width: 460px;margin-top: 50px; margin-left: auto;margin-right: auto;border: 2.3px solid rgba(0,0,0,.125);background-color: #ffffff;">
+            <div class="card-header" style="text-align: center; height: 55px; background-color: #ffffff;border-bottom: 2.3px solid rgba(0,0,0,.125);"><h3>Login</h3></div>
+            <div class="card-body" style="padding: 50px;background-color: #ffffff;">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup" style="width: 80px;">User:</span>
+                </div>
+                <input type="text" class="form-control" id="login" name="login" required  aria-describedby="inputGroup">
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup" style="width: 80px;">Senha:</span>
+                </div>
+                <input type="password" id="passLogin" name  ="passLogin"  class="form-control" required>
+                <button type="submit" class="btn btn-success btn-block" style="margin-top: 25px">Login</button>
+                
+              </div>
+                 
+            </div>
+          </div>
+
+        </form>
+        
+        
+
+   
+
+
+    </div>
+
+
+
+    <script src="/javascripts/jquery.js"></script>
+    <script src="/javascripts/popper.js"></script>
+    <script src="/javascripts/bootstrap.js"></script>
+</body>
+
+</html>

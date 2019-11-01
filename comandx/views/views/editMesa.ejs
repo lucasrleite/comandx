@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ComandX - Editar Pratos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="/stylesheets/bootstrap.css" />
+    <link rel="stylesheet" href="/stylesheets/datatable.min.css" />
+    <link rel="stylesheet" href="/stylesheets/datatable.responsive.css" />
+    <link href="/stylesheets/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">ComandX</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Alterna navegação">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="">Home <span class="sr-only">(Página atual)</span></a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Pratos
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="#">Adicionar</a>
+                <a class="dropdown-item" href="#">Editar | Visualizar</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Mesa
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="#">Adicionar</a>
+                  <a class="dropdown-item" href="#">Editar | Visualizar</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Pratos
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="#">Adicionar</a>
+                  <a class="dropdown-item" href="#">Editar | Visualizar</a>
+                </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    <div class="header clearfix" style="margin-top: 15px;">
+        <a href="/">Voltar</a>
+        <h2 class="by1">ComandX - Admin</h2>
+        <small class="by">Funcionarios</small>
+    </div>
+
+
+    <div class="cards">
+        <div class="card border-success mb-3" style="max-width: 18rem;">
+            <div class="card-header bg-transparent border-success">Mesa: 1</div>
+            <div class="card-body text-success">
+              <h5 class="card-title">Nº de Cadeiras: </h5>
+              <p class="card-text"></p>
+            </div>
+            <div class="card-footer bg-transparent border-success">Footer</div>
+        </div>
+    
+    </div>
+    <script src="/javascripts/jquery.js"></script>
+    <script src="/javascripts/bootstrap.js"></script>
+    <script src="/javascripts/jquery.datatables.js"></script>
+    <script src="/javascripts/data.responsive.js"></script>
+
+
+
+    <script src="/javascripts/sweetalerts.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable({
+                rowReorder: {
+                    enable: false,
+                    selector: 'td:nth-child(3)'
+                },
+                responsive: true,
+                //"order": [[ 1, "asc" ]], //default: 1a coluna asc
+                "language": {
+                    "sEmptyTable": "Nenhum registro encontrado",
+                    "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+                    "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sInfoThousands": ".",
+                    "sLengthMenu": "_MENU_ resultados por página",
+                    "sLoadingRecords": "Carregando...",
+                    "sProcessing": "Processando...",
+                    "sZeroRecords": "Nenhum registro encontrado",
+                    "sSearch": "Pesquisar",
+                    "oPaginate": {
+                        "sNext": "Próximo",
+                        "sPrevious": "Anterior",
+                        "sFirst": "Primeiro",
+                        "sLast": "Último"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Ordenar colunas de forma ascendente",
+                        "sSortDescending": ": Ordenar colunas de forma descendente"
+                    }
+                }
+            });
+
+        });
+    </script>
+    <script>
+        function excluir(id) {
+            Swal.fire({
+                title: 'Tem certeza disso?',
+                text: 'Você está prestes a excluir um funcionario do sistema !',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sim, tenho certeza!'
+            }).then((result) => {
+                if (result.value == true) {
+                    console.log(id)
+                    excluirDAO(id)
+                }
+            });
+
+            function excluirDAO(id) {
+                console.log(id)
+                $.ajax({
+                    'url': `/func/delete/${id}`, //aqui vai o endereço da rota        
+                    'type': 'DELETE', // ou POST 
+                    // 'data': $("form").serialize(), //para enviar os dados do form completo; senão tem que pegar campo a campo e enviar ex: { nome : $("# nome ").val(), email : $("#
+                    'contentType': 'application/json'
+                }).done(function(data) {
+                    /* aqui vai o código javascript para configurar a mensagem animada, após enviar os dados e concluídas as fases do 
+node */     
+                    console.log(data);
+                    if(data=="OK"){
+                        Swal.fire({
+                            title: 'Exclusão concluida com sucesso!!',
+                            text: 'Foi realizada a exclusão com sucesso!!!',
+                            type: 'success',
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'Ok'
+                        }).then((result) => {
+                            
+                            if (result) {
+                                window.location.reload();
+                            }
+                        
+                        });
+                }else{
+                    Swal.fire({
+                            title: 'Exclusão  não executada com sucesso!!',
+                            text: 'Não foi realizada a exclusão com sucesso!!!',
+                            type: 'error',
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'Ok'
+                        });
+                }
+            }
+
+            
+                )}
+    }
+                
+</script>
+
+</body>
+
+</html>

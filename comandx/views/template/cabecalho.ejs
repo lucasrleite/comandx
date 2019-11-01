@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Agenda de tarefas</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!--<link href="/stylesheets/datatables.min.css" rel="stylesheet"> -->
+    <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/rowreorder/1.2.5/css/rowReorder.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet">
+    <link href="/stylesheets/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top navbar">
+        <div class="container">
+            <a class="navbar-brand" href="#">Agenda de tarefas</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/tasks">Tarefas</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users">Usuários</a>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/tasks/report">Relatórios</a>
+                    </li>
+
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/users/myaccount" title="Alterar meus dados">Olá, 
+                          <%= sessao.nome%>
+                          !</a>
+                    </li>
+                    <li class="nav-item">
+                        <img src="/uploads/anonimo.jpg" class="rounded-circle" width="30" height="30" />
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" style="font-weight: bold" href="/users/logout" onclick="return confirm('Deseja realmente sair do sistema?');" title="Clique aqui para sair do sistema">Sair</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">

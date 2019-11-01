@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ComandX - Adicionar Pratos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="/stylesheets/bootstrap.css">
+    <link href="/stylesheets/style.css" rel="stylesheet">
+    <meta charset="utf-8">
+</head>
+
+<body style="padding-top: 30px;">
+    <div class="container ">
+
+        <div class="header clearfix ">
+            <a href="/">Voltar</a>
+            <h2 class="by1 ">ComandX - Admin</h2>
+            <small class="by ">Adicionar | Editar Pratos</small>
+
+        </div>
+
+        <div class="jumbotron ">
+                <% if(pratos.idpratos>0){ %>   <!-- se a tarefa existe e será editada -->             
+                    <form method="POST" onsubmit="editarDAO(<%= pratos.idpratos %>)">
+                    <input type="hidden" name="_method" value="PUT" />
+            <% }else{ %>
+                <form id="formulario " method="post" action="/pratos/add">
+            <% } %>
+
+
+           
+                <div id="aviso "></div>
+                <div class="form-group ">
+                    <label>Nome do prato:</label>
+                    <input type="text " class="form-control input" name="nomePrato" required id="nomePrato" value="<%=pratos.nome%>"placeholder="Digite o nome do prato... ">
+                </div>
+                <div class="form-group ">
+                    <label>Preço do prato:</label>
+                    <input type="text " class="precoPrato form-control input" required name="precoPrato" id="precoPrato" value="<%=pratos.preco%> placeholder="Digite o preco do produto... ">
+                </div>
+                <div class="form-group ">
+                    <label>Categoria do prato:</label>
+                    <select class="form-control " id="categoriaP" name="categoriaP" >
+						<option value="Entrada">Entrada</option>
+						<option value="Prato Principal">Prato Principal</option>
+                        <option value="Sobremesa">Sobremesa</option>
+                        <option value="Bebida">Bebida</option>
+					</select>
+                </div>
+                <div class="form-group ">
+                    <label>Descrição do produto</label>
+                    <textarea type="text" class="form-control input" name="descPrato" id="descPrato " required   placeholder="Dê uma breve descrição do produto! "><%=pratos.descricao%></textarea>
+                </div>
+                <button type="submit " class="btn btn-primary ">Adicionar</button>
+            </form>
+        </div>
+
+        <!-- <div class="row marketing ">
+            <div class="col-lg-12 ">
+                <table class="table table-hover ">
+                    <thead>
+                        <tr>
+                            <th>Modelo</th>
+                            <th>Placa</th>
+                            <th>Entrada</th>
+                            <th>Finalizar</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultados ">
+                    </tbody>
+                </table>
+            </div>
+        </div> -->
+    </div>
+    
+    <script src="/javascripts/jquery.js"></script>
+    <script src="/javascripts/popper.js"></script>
+
+    <script src="/javascripts/bootstrap.js"></script>
+    <script src="/javascripts/jquery.mask.min.js"></script>
+    <script src="/javascripts/jquery.validate.min..js"></script>
+    <script src="/javascripts/validarform.js"></script>
+    <script src="/javascripts/validacampos.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#categoriaP').val('<%=pratos.categoria%>');
+        });
+    
+    
+    </script>
+    <script>
+            function editarDAO(id) {
+                console.log(id)
+                $.ajax({
+                    'url': `/pratos/edit/${id}`, //aqui vai o endereço da rota        
+                    'type': 'PUT', // ou POST 
+                    // 'data': $("form").serialize(), //para enviar os dados do form completo; senão tem que pegar campo a campo e enviar ex: { nome : $("# nome ").val(), email : $("#
+                    'contentType': 'application/json'
+                }).done(function(data) {
+                    /* aqui vai o código javascript para configurar a mensagem animada, após enviar os dados e concluídas as fases do 
+node */     
+                    console.log(data);
+                    if(data=="OK"){
+                        Swal.fire({
+                            title: 'Exclusão concluida com sucesso!!',
+                            text: 'Foi realizada a exclusão com sucesso!!!',
+                            type: 'success',
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'Ok'
+                        }).then((result) => {
+                            
+                            if (result) {
+                                window.location.reload();
+                            }
+                        
+                        });
+                }else{
+                    Swal.fire({
+                            title: 'Exclusão  não executada com sucesso!!',
+                            text: 'Não foi realizada a exclusão com sucesso!!!',
+                            type: 'error',
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'Ok'
+                        });
+                }
+            }
+
+            
+                )}
+    }
+                
+</script>
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+CREATE TABLE `comandx`.`pratos` (
+  `idpratos` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(45) NULL,
+  `descricao` VARCHAR(200) NULL,
+  `preco` VARCHAR(45) NULL,
+  `categoria` VARCHAR(45) NULL,
+  PRIMARY KEY (`idpratos`));
+
+
+
+
+CREATE TABLE `comandx`.`func` (
+  `idfunc` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(100) NULL,
+  `email` VARCHAR(100) NULL,
+  `permissao` INT NULL,
+  `user` VARCHAR(45) NULL,
+  `senha` VARCHAR(45) NULL,
+  PRIMARY KEY (`idfunc`));
